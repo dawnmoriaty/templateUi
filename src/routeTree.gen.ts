@@ -11,6 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UsersIndexRouteImport } from './routes/users/index'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as CategoriesIndexRouteImport } from './routes/categories/index'
+import { Route as ProductsCreateRouteImport } from './routes/products/create'
+import { Route as ProductsIdIndexRouteImport } from './routes/products/$id/index'
+import { Route as ProductsIdEditRouteImport } from './routes/products/$id/edit'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -22,31 +28,110 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UsersIndexRoute = UsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
+  id: '/categories/',
+  path: '/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsCreateRoute = ProductsCreateRouteImport.update({
+  id: '/products/create',
+  path: '/products/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIdIndexRoute = ProductsIdIndexRouteImport.update({
+  id: '/products/$id/',
+  path: '/products/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIdEditRoute = ProductsIdEditRouteImport.update({
+  id: '/products/$id/edit',
+  path: '/products/$id/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/products/create': typeof ProductsCreateRoute
+  '/categories': typeof CategoriesIndexRoute
+  '/products': typeof ProductsIndexRoute
+  '/users': typeof UsersIndexRoute
+  '/products/$id/edit': typeof ProductsIdEditRoute
+  '/products/$id': typeof ProductsIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/products/create': typeof ProductsCreateRoute
+  '/categories': typeof CategoriesIndexRoute
+  '/products': typeof ProductsIndexRoute
+  '/users': typeof UsersIndexRoute
+  '/products/$id/edit': typeof ProductsIdEditRoute
+  '/products/$id': typeof ProductsIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/products/create': typeof ProductsCreateRoute
+  '/categories/': typeof CategoriesIndexRoute
+  '/products/': typeof ProductsIndexRoute
+  '/users/': typeof UsersIndexRoute
+  '/products/$id/edit': typeof ProductsIdEditRoute
+  '/products/$id/': typeof ProductsIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/products/create'
+    | '/categories'
+    | '/products'
+    | '/users'
+    | '/products/$id/edit'
+    | '/products/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/products/create'
+    | '/categories'
+    | '/products'
+    | '/users'
+    | '/products/$id/edit'
+    | '/products/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/products/create'
+    | '/categories/'
+    | '/products/'
+    | '/users/'
+    | '/products/$id/edit'
+    | '/products/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ProductsCreateRoute: typeof ProductsCreateRoute
+  CategoriesIndexRoute: typeof CategoriesIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
+  UsersIndexRoute: typeof UsersIndexRoute
+  ProductsIdEditRoute: typeof ProductsIdEditRoute
+  ProductsIdIndexRoute: typeof ProductsIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +150,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/users/': {
+      id: '/users/'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/': {
+      id: '/categories/'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof CategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/create': {
+      id: '/products/create'
+      path: '/products/create'
+      fullPath: '/products/create'
+      preLoaderRoute: typeof ProductsCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$id/': {
+      id: '/products/$id/'
+      path: '/products/$id'
+      fullPath: '/products/$id'
+      preLoaderRoute: typeof ProductsIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$id/edit': {
+      id: '/products/$id/edit'
+      path: '/products/$id/edit'
+      fullPath: '/products/$id/edit'
+      preLoaderRoute: typeof ProductsIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ProductsCreateRoute: ProductsCreateRoute,
+  CategoriesIndexRoute: CategoriesIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
+  UsersIndexRoute: UsersIndexRoute,
+  ProductsIdEditRoute: ProductsIdEditRoute,
+  ProductsIdIndexRoute: ProductsIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
+
+import { ModeToggle } from '@/components/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ModeToggle } from '@/components/mode-toggle'
 
 function Index() {
     return (
@@ -39,6 +40,9 @@ function Index() {
 
                     <div className="flex gap-2 pt-4">
                         <Button asChild>
+                            <a href="/products">Quản lý Products</a>
+                        </Button>
+                        <Button asChild variant="secondary">
                             <a href="/about">Go to About</a>
                         </Button>
                         <Button variant="outline" asChild>

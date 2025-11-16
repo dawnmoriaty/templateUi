@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:routes": "tsr watch --project tsconfig.app.json",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "routes": "tsr generate"
   },
@@ -34,6 +36,7 @@
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/vite": "^4.1.17",
     "@tanstack/react-query-devtools": "^5.90.2",
+    "@tanstack/router-cli": "^1.136.6",
     "@tanstack/router-plugin": "^1.136.6",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
@@ -42,6 +45,7 @@
     "@vitejs/plugin-react-swc": "^4.2.2",
     "autoprefixer": "^10.4.22",
     "eslint": "^9.39.1",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
